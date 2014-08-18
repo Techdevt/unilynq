@@ -1,0 +1,119 @@
+/***IMPORT FONT***/
+@import "http://fonts.googleapis.com/css?family=Roboto";
+
+/***GENERAL STYLES***/
+*                               {margin:0; padding:0;}
+
+body                            { font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;}
+
+/* numbered buttons */
+#status-buttons                 {  }
+#status-buttons a               { display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
+#status-buttons a:hover         { text-decoration:none; cursor:pointer;}
+
+/* we will style the span as the circled number */
+#status-buttons span            { color:#FFF; background:#428bca; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
+    border-radius:50%; }
+
+/* active buttons turn light green-blue*/
+#status-buttons a.active span   { background:tomato; }
+
+#signup-form            { position:relative; min-height:600px; overflow:hidden; padding:30px; }
+#form-views             { width:auto; }
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave      { position:absolute; left:30px; right:30px;
+    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease; 
+}
+    
+/* enter animation */
+#form-views.ng-enter            { 
+  -webkit-animation:slideInRight 0.5s both ease;
+  -moz-animation:slideInRight 0.5s both ease;
+  animation:slideInRight 0.5s both ease; 
+}
+
+/* leave animation */
+#form-views.ng-leave            { 
+    -webkit-animation:slideOutLeft 0.5s both ease;
+  -moz-animation:slideOutLeft 0.5s both ease;
+  animation:slideOutLeft 0.5s both ease;   
+}
+
+/* form buttons */
+.formButtons            {margin-top: 60px;}
+
+/***forgot password ***/
+
+#forgotPassHolder.ng-enter,
+#forgotPassHolder.ng-leave      { position:absolute; left:30px; right:30px;
+    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease; 
+}
+
+#forgotPassHolder.ng-enter            { 
+  -webkit-animation:slideInDown 0.5s ease-in;
+  -moz-animation:slideInDown 0.5s ease-in;
+  animation:slideInDown 0.5s ease-in; 
+}
+
+#forgotPassHolder.ng-leave            { 
+    -webkit-animation:slideOutLeft 0.5s both ease;
+  -moz-animation:slideOutLeft 0.5s both ease;
+  animation:slideOutLeft 0.5s both ease;   
+}
+
+#forgotPassHolder  {position:absolute; margin:50px auto;}
+
+
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+  to    { transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {  
+  to    { -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+  to    { -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+  from  { transform:translateX(200%); }
+  to    { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+  from  { -moz-transform:translateX(200%); }
+  to    { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+  from  { -webkit-transform:translateX(200%); }
+  to    { -webkit-transform: translateX(0); }
+}
+
+
+@keyframes slideInDown {
+  from  { transform:translateY(0); }
+  to    { transform: translateY(100%); }
+}
+
+@-webkit-keyframes slideInDown {
+  from  { -webkit-transform:translateY(0); }
+  to    { -webkit-transform: translateY(100%); }
+}
+
+
+/***VALIDATION STYLES**/
+
+.error{ font-weight: bold; color : red; font-family: 'Roboto', sans-serif;}
+
+.pass                  { font-weight:bold; color : green; font-family: 'Roboto', sans-serif;}
+
+
+/*****SIGN UP PAGE STYLES***/
+.form-group h3         {font-family: 'Roboto', sans-serif;}

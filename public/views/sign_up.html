@@ -1,0 +1,84 @@
+<div class="col-md-6 slidePic">
+                <!--SlideShow pictures content-->
+     <img class="responsiveImg" ng-src="./img/1.jpg">
+      </div>
+        <div class="col-md-6 formContent ">
+            <div>
+              <table class="table">
+                <tr>
+                  <td>
+
+                  <div class="form-group"><br /><br />
+                      <h3 >Register below to Begin</h3>
+                      <form  name="signupform" id="signupform" ng-submit="signup()">
+                        <input type="text" 
+                        class="form-control"  
+                        placeholder="First Name" 
+                        ng-model="signUpFormData.fname">
+                        
+                        <p id="fname_validate" class="register_msg"></p>
+                        
+                        <input 
+                        type="text"
+                        class="form-control" 
+                        placeholder="Last Name" 
+                        ng-model="signUpFormData.lname">
+                        
+                        <p id="lname_validate" class="register_msg"></p>
+                        
+                        <input 
+                        type="text"
+                        class="form-control" 
+                        placeholder="Username" 
+                        ng-model="signUpFormData.username"
+                        ng-model-options="{ updateOn: 'blur' }"
+                        ng-focus="usermsg=''"
+                        >
+
+                        <p id="username_validate" ng-class="usernameClass" class="register_msg">{{usermsg}}</p>
+                        
+                        <input 
+                        type="email"
+                        class="form-control" 
+                        placeholder="Email" 
+                        ng-model="signUpFormData.email"
+                        ng-model-options="{ updateOn: 'blur' }"
+                        ng-focus="emailmsg = '' ">
+
+                        <p id="email_validate" ng-class="emailClass" class="register_msg">{{emailmsg}}</p>
+
+                        <input  
+                        type="password"
+                        class="form-control" 
+                        placeholder="password (6 or more characters)" 
+                        ng-model="signUpFormData.password"
+                        ng-focus="pswdmsg=''">
+
+                        <p id="password1_validate" class="register_msg"> </p>
+                        
+                        <input  
+                        type="password" 
+                        class="form-control" 
+                        placeholder="Confirm password" 
+                        ng-model="signUpFormData.password2"
+                        ng-model-options="{ updateOn: 'blur' }"
+                        ng-keyup="cancel($event)"
+                        ng-focus="pswdmsg=''"
+                        >
+
+                        <p class="register_msg" ng-class="passwordClass">{{ pswdmsg }}</p>
+
+                        <input type="submit" 
+                        class="btn btn-primary btn-lg btn-block" 
+                        value="Join Now"/>
+
+                        <p id="join_validate" class="register_msg"></p>
+
+
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+</div>

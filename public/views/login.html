@@ -1,0 +1,19 @@
+<div class="col-md-4"></div>
+<div class="col-md-4 loginInnermost">
+		<form ng-submit="login()">
+	 <div class="form-group">
+	  <label for="exampleInputPassword1">Email Address</label>
+	  <input type="text" id="user_login_field"class="form-control" name="user_login_field" placeholder="Enter email" autofocus="" value="" ng-model="loginData.username">
+	  <label for="exampleInputPassword1">Password</label>
+	  <input id="password_login_field" class="form-control" type="password" name="password_login_field" placeholder="password" ng-model="loginData.password"><br />
+	  <button type="submit" id="button1" name="button1" class="btn btn-default">Sign In</button>
+	 </div>
+	</form>
+
+     <a ui-sref=".forgotpass" id="forgotPass">forgot password</a>
+</div>
+{{loginData}}
+<div class="col-md-4"></div>
+
+
+
