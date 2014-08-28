@@ -1,1 +1,67 @@
 profile page
+<div>
+  <!--Processing data outputted from the database
+  <h3><?php echo $u; ?></h3>
+  <p>Is the viewer the page owner, logged in and verified? <b><?php echo $isOwner; ?></b></p>
+  <p>Gender: <?php echo $sex; ?></p>
+  <p>Name: <?php echo $fname." ".$lname; ?></p>
+  <p>University: <?php echo $university; ?></p>
+  <img src="<?php echo $dpString; ?>" alt="image">
+  <p>Join Date: <?php echo $joindate; ?></p>
+  <p>Last Session: <?php echo $lastsession; ?></p>
+  <p><a href="logout.php">Click to logout</a>-->
+
+
+   
+
+          <div ui-view="header"></div>
+
+          <br><br>
+         <div class="wrapper">
+           <div id="searchBox">
+          <input type="search" class="searchfriends" id="searchfriends"><!--<img src="./img/searchblack.png" alt="search" title="search friends" class="searchImg">-->
+          <div id="searchResults">
+          <div class="resultModule">
+
+          </div>
+          </div>
+          </div>
+          
+       <br />
+    <div ><!--HeaderNav beginning-->
+                <div >
+                   <div class="col-md-12">
+                        <ul class="nav nav-tabs ">
+                        <li class="active"><a ui-sref=".posts">Posts</a></li>
+                        <li><a ui-sref=".messages">Messages</a></li>
+                        <li><a ui-sref=".pictures">Conversations</a></li>
+                        <li><a ui-sref=".friends">Friends</a></li>
+                         <li><a ui-sref=".photos">Photos</a></li>
+                </ul>
+                    </div>
+                </div>
+            </div><!--HeaderNav End-->
+    <div class=" mainBody">
+      
+	      <div class="col-md-3 leftContainer"><!--Left Section Starts here-->
+	      <div ui-view="profile_left"></div>
+	       </div><!--Left Section Ends Here-->             
+                    
+                <div class="col-md-6 middleContainer"><!--Middle Starts Here-->
+                         
+                         <div ui-view="status_template"></div>
+                    </div><!--Middle Section Ends Here-->
+                    
+
+                    <div class="col-md-3 rightColumn"><!--Middle Starts Here-->
+                         
+                         <div ui-view="profile_right"></div>
+                    </div><!--Middle Section Ends Here-->
+
+
+                    
+        </div>
+    </div>        
+
+           
+<div ui-view="footer"></div>

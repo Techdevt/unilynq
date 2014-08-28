@@ -10,19 +10,24 @@
 
                   <div class="form-group"><br /><br />
                       <h3 >Register below to Begin</h3>
-                      <form  name="signupform" id="signupform" ng-submit="signup()">
+                      <form  
+                      name="signupform" 
+                      ng-submit="signupform.$valid && signup()" 
+                      novalidate
+                      >
+                      	
                         <input type="text" 
                         class="form-control"  
                         placeholder="First Name" 
-                        ng-model="signUpFormData.fname">
+                        ng-model="signUpFormData.fname" required>
                         
-                        <p id="fname_validate" class="register_msg"></p>
+                        <p class="register_msg"></p>
                         
                         <input 
                         type="text"
                         class="form-control" 
                         placeholder="Last Name" 
-                        ng-model="signUpFormData.lname">
+                        ng-model="signUpFormData.lname" required>
                         
                         <p id="lname_validate" class="register_msg"></p>
                         
@@ -33,9 +38,9 @@
                         ng-model="signUpFormData.username"
                         ng-model-options="{ updateOn: 'blur' }"
                         ng-focus="usermsg=''"
-                        >
+                        required>
 
-                        <p id="username_validate" ng-class="usernameClass" class="register_msg">{{usermsg}}</p>
+                        <p id="username_validate" ng-class="usernameClass" class="register_msg" >{{usermsg}}</p>
                         
                         <input 
                         type="email"
@@ -43,7 +48,7 @@
                         placeholder="Email" 
                         ng-model="signUpFormData.email"
                         ng-model-options="{ updateOn: 'blur' }"
-                        ng-focus="emailmsg = '' ">
+                        ng-focus="emailmsg = '' " required>
 
                         <p id="email_validate" ng-class="emailClass" class="register_msg">{{emailmsg}}</p>
 
@@ -52,7 +57,7 @@
                         class="form-control" 
                         placeholder="password (6 or more characters)" 
                         ng-model="signUpFormData.password"
-                        ng-focus="pswdmsg=''">
+                        ng-focus="pswdmsg=''" required>
 
                         <p id="password1_validate" class="register_msg"> </p>
                         
@@ -64,17 +69,18 @@
                         ng-model-options="{ updateOn: 'blur' }"
                         ng-keyup="cancel($event)"
                         ng-focus="pswdmsg=''"
-                        >
+                        required>
 
                         <p class="register_msg" ng-class="passwordClass">{{ pswdmsg }}</p>
 
                         <input type="submit" 
                         class="btn btn-primary btn-lg btn-block" 
-                        value="Join Now"/>
+                        value="Join Now" 
+                        ng-disabled="signupform.$invalid"/>
 
                         <p id="join_validate" class="register_msg"></p>
 
-
+                        {{signupMsg}}
                       </form>
                     </div>
                   </td>

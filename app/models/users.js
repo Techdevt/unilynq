@@ -12,6 +12,7 @@ var userSchema = mongoose.Schema({
 	  gender : {type: String, default : 'F', enum : ['M','F'] },
 	  dp : {type: String, default: './img/default.img'},
 	  ip : String,
+	  bio : String,
 	  registration_date : {type : Date, default : Date.now()},
 	  lastlogin : Date,
 	  notescheck : Date,
@@ -38,7 +39,9 @@ var userSchema = mongoose.Schema({
 	   displayName : String,
 	   username : String
 	}
+
 	});
+
 
 	userSchema.methods.generatePassEncrypt = function(password){
 		return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
@@ -48,5 +51,5 @@ var userSchema = mongoose.Schema({
 		return bcrypt.compareSync(password, this.local.password);
 	};
 
-	module.exports = mongoose.model('User', userSchema);
 
+	module.exports = mongoose.model('User', userSchema);

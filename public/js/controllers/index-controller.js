@@ -1,5 +1,6 @@
 app.controller('indexController',['$http','$scope','$log',function($http,$scope,$log){
 
+
 $scope.books = [{ name : "King Solomon's mines", 
 					 price : 3.5 
 				   },

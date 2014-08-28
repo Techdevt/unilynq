@@ -1,20 +1,22 @@
-app.controller('loginController',['$http','$scope','$log',function($http,$scope,$log){
+app.controller('loginController',['$http','$scope','$log','$window','authenticationService', function($http,$scope,$log,$window,authenticationService){
 
-		this.loginData = {};
+		$scope.loginData = {};
+		$scope.submitted = false;
+		$scope.showMessage = false;
+		$scope.loginMsg = '';
 
-		$scope.login = function(){
-			$http({
-		        method : 'POST',
-		        url : '/login',
-		        data : this.loginData,
-		        headers : {'Content-Type': 'application/json'}
-		         })
-			.success(function(data){
-				console.log("ok "+ data);
-			})
-			.error(function(data,status,headers,config){
-				 throw new Error("Error: "+data);
+		$scope.submit = function(){
+			$scope.showMessage = true;
+			authenticationService.login($scope.loginData.username, $scope.loginData.password).then(function(result){
+				if(result==='login failed'){return $scope.loginMsg="Login failure..Account not registered"}
+				else if( result === 'user not activated') { return $scope.loginMsg = 'Account not activated. Check your email for activation message'}
+				else if( result === 'wrong password..retry') { return $scope.loginMsg = 'password incorrect'}
+				else{
+				userData = authenticationService.getUserData();
+				$window.location.href = '/profile';
+				}
 			});
+			$scope.loginData = {};
 		};
 
 }]);

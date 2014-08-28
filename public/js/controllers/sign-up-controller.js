@@ -1,4 +1,4 @@
-app.controller('signUpController',['$http','$scope','$log',function($http,$scope,$log){
+app.controller('signUpController',['$http','$scope','$log','$window','$timeout',function($http,$scope,$log,$window,$timeout){
 
 	$scope.signUpFormData = {
 		fname: '',
@@ -12,6 +12,7 @@ app.controller('signUpController',['$http','$scope','$log',function($http,$scope
 	$scope.pswdmsg = '';
 	$scope.emailmsg = '';
 	$scope.usermsg = '';
+	$scope.signupMsg = '';
 
 	$scope.emailClass = '';
 	$scope.usernameClass = '';
@@ -19,6 +20,7 @@ app.controller('signUpController',['$http','$scope','$log',function($http,$scope
 
 
 	$scope.signup = function(){
+		if($scope.signupform.$valid){
 		$http({
 			method : 'post',
 			url : '/signup',
@@ -26,17 +28,31 @@ app.controller('signUpController',['$http','$scope','$log',function($http,$scope
 			headers : {'Content-type' : 'application/json'}
 		})
 		.success(function(data){
-
+			if(data === 'activation success'){
+				$scope.signupMsg = 'Registration successful, check email your for activation message';
+				//empty form and show user signupMsg
+			}
+			else{
+				$scope.signupMsg = 'Signup unsuccessful...you might want to try again later';
+				$timeout(function(){
+					$window.location.href = '/signup';
+				},3000);
+			}
+				
+			
 		})
 		.error(function(data,status,headers,config){
 			console.log('Error: '+data);
 		});
 		$scope.signUpFormData = '';
+		$scope.usermsg = '';
+		$scope.emailmsg = '';
+		}
 	};
 
 
 		$scope.$watch('signUpFormData.email', function(){
-			if($scope.signUpFormData.email!=''){
+			if($scope.signUpFormData.email!='' && $scope.signUpFormData.email!= undefined){
 			$http({
 				method : 'post',
 				url : '/validate/email',
@@ -48,13 +64,9 @@ app.controller('signUpController',['$http','$scope','$log',function($http,$scope
 					$scope.emailmsg = $scope.signUpFormData.email + ' already used to register';
 					$scope.emailClass = 'error';
 				}
-				else if(data==='permit'){
-				$scope.emailmsg = $scope.signUpFormData.email + ' is fine';
-				$scope.emailClass = 'pass';
-				}
-				else{
-					$scope.emailmsg = 'sorry..server verification failed at the moment';
-					$scope.emailClass = 'error';
+				else if(data==='other'){
+					$scope.emailmsg = $scope.signUpFormData.email+ ' available';
+					$scope.emailClass = 'pass';
 				}
 				
 			})
@@ -68,7 +80,7 @@ app.controller('signUpController',['$http','$scope','$log',function($http,$scope
 
 
 		$scope.$watch('signUpFormData.username', function(){
-			if($scope.signUpFormData.username!=''){
+			if($scope.signUpFormData.username!=''&& $scope.signUpFormData.username!= undefined){
 			$http({
 				method : 'post',
 				url : '/validate/username',
@@ -79,17 +91,14 @@ app.controller('signUpController',['$http','$scope','$log',function($http,$scope
 				if(data!='' && data==='username exists'){
 					$scope.usermsg = $scope.signUpFormData.username+' already registered..try another';
 					$scope.usernameClass = 'error';
-				}else if(data==='permit'){
-				$scope.usermsg = $scope.signUpFormData.username+' is available';
-				$scope.usernameClass = 'pass';
+				}else if(data==='other'){
+					$scope.usermsg = $scope.signUpFormData.username+' available';
+					$scope.usernameClass = 'pass';
 				}
-				else{
-					$scope.usermsg = 'sorry..server verification failed at the moment';
-					$scope.usernameClass = 'error';
-				}
+
 			})
 			.error(function(data){
-				console.log('Error'+ data);
+				console.log('Error occurred in signup..please try later');
 			});
 			}
 		});

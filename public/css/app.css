@@ -3,14 +3,17 @@
 
 /***GENERAL STYLES***/
 *                               {margin:0; padding:0;}
+html 							{ min-width: 1080px;}
 
 body                            { font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
    font-weight: 300;}
-
+ 
 /* numbered buttons */
 #status-buttons                 {  }
-#status-buttons a               { display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
+#status-buttons a               { display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; outline: none;}
+
 #status-buttons a:hover         { text-decoration:none; cursor:pointer;}
+#status-buttons a:focus        { text-decoration: none}
 
 /* we will style the span as the circled number */
 #status-buttons span            { color:#FFF; background:#428bca; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px; 
@@ -107,6 +110,40 @@ body                            { font-family: "HelveticaNeue-Light", "Helvetica
   to    { -webkit-transform: translateY(100%); }
 }
 
+/***SHAKING THE FORM**/
+@-webkit-keyframes shake {
+  0% {-webkit-transform: translateX(0);}
+  12.5% {-webkit-transform: translateX(-6px) rotateY(-5deg)}
+  37.5% {-webkit-transform: translateX(5px) rotateY(4deg)}
+  62.5% {-webkit-transform: translateX(-3px) rotateY(-2deg)}
+  87.5% {-webkit-transform: translateX(2px) rotateY(1deg)}
+  100% {-webkit-transform: translateX(0)}
+}
+
+@-moz-keyframes shake {
+  0% {-moz-transform: translateX(0);}
+  12.5% {-moz-transform: translateX(-6px) rotateY(-5deg)}
+  37.5% {-moz-transform: translateX(5px) rotateY(4deg)}
+  62.5% {-moz-transform: translateX(-3px) rotateY(-2deg)}
+  87.5% {-moz-transform: translateX(2px) rotateY(1deg)}
+  100% {-moz-transform: translateX(0)}
+}
+
+@keyframes shake {
+  0% {transform: translateX(0);}
+  12.5% {transform: translateX(-6px) rotateY(-5deg)}
+  37.5% {transform: translateX(5px) rotateY(4deg)}
+  62.5% {transform: translateX(-3px) rotateY(-2deg)}
+  87.5% {transform: translateX(2px) rotateY(1deg)}
+  100% {transform: translateX(0)}
+}
+
+.shake {
+  animation: shake 400ms ease-in-out;
+  -webkit-animation : shake 400ms ease-in-out;
+  -moz-animation : shake 400ms ease-in-out;
+}
+
 
 /***VALIDATION STYLES**/
 
@@ -117,3 +154,5 @@ body                            { font-family: "HelveticaNeue-Light", "Helvetica
 
 /*****SIGN UP PAGE STYLES***/
 .form-group h3         {font-family: 'Roboto', sans-serif;}
+.ng-invalid.ng-dirty    {border-color: #FA787E;}
+.ng-valid.ng-dirty      {border-color: #78FA89;}
