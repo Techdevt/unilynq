@@ -1,4 +1,4 @@
-app.factory('authorization',['$rootScope','$window','authenticationService', function($rootScope,$window,authenticationService){
+app.factory('authorization',['$rootScope','$state','authenticationService', function($rootScope,$state,authenticationService){
 	return {
 		authorize : function(){
 			 	authenticationService.init();

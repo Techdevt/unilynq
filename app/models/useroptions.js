@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var userOptionsSchema = mongoose.Schema({
+var userOptionSchema = mongoose.Schema({
 	username : String, 
 	background : String,
 	question : String,
@@ -9,4 +9,5 @@ var userOptionsSchema = mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('userOptions', userOptionsSchema);
+module.exports = mongoose.model('userOption', userOptionSchema);
+ 

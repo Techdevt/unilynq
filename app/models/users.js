@@ -10,7 +10,7 @@ var userSchema = mongoose.Schema({
 	  password : {type: String},
 	  university : {type: String, default: 'Not Set'},
 	  gender : {type: String, default : 'F', enum : ['M','F'] },
-	  dp : {type: String, default: './img/default.img'},
+	  dp : {type: String, default: './img/default.jpg'},
 	  ip : String,
 	  bio : String,
 	  registration_date : {type : Date, default : Date.now()},
@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
 	  notescheck : Date,
 	  activated : {type: String, default: 0}
 	},
-
+ 
 	facebook : {
 	   id : String,
 	   token : String,

@@ -1,12 +1,16 @@
 'use strict';
 
-var app = angular.module('unilynq',['ngAnimate','ui.router']);
+var app = angular.module('unilynq',['ngAnimate','ui.router','angularFileUpload']);
 
 app.value('activateMsg','');
 
 app.value('userData', {});
 
-
+/*app.filter('timeago', function(){
+  return function(date){
+    return moment(date).fromNow();
+  };
+});*/
 
 
 

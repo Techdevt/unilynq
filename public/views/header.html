@@ -1,43 +1,30 @@
-<header>
-            <div class="container"><!--Header Start-->
-            <div class="row">
-                
-                <nav class="navbar navbar-default move1" role="navigation">
-  <div class="container-fluid move2">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><img alt="Unilynq" src="./img/UnilynqLogo.png"/></a>
-    </div>
+    <header>
+      <div class="grid main">
+        <div class="logo">
+          <a ui-sref=".home">
+          <img src="./img/UnilynqLogo.png" alt="unilynq"/>
+          </a>
+        </div>
 
-    
+       <div id="searchBox">
+          <input type="search" class="searchfriends" id="searchfriends"><!--<img src="./img/searchblack.png" alt="search" title="search friends" class="searchImg">-->
+          <div id="searchResults">
+          <div class="resultModule">
 
-    
+          </div>
+          </div>
+          </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-      <ul class="nav navbar-nav">
-        <li class="active activeTab"><a href="#">Home</a></li>
-        <li><a href="../videos.php?u=<?php echo $log_username; ?>">Video Lectures</a></li>
-          <li><a href="#">Class Pictures</a></li>
-          <li><a href="#">Forums</a></li>
-          <li id="account"><div id="notification"><?php echo $envelope ?>&nbsp; &nbsp; </div><div id="accountInfo"><button
-type="submit"
-ng-click="logout()"
->Logout</button>
-</div></li>
+        <nav>
+          <ul>
+              <li><a>Home</a></li>
+            <li><a>Video Lectures</a></li>
+            <li><a>Class Pictures</a></li>
+            <li><a>Forums</a></li>
+            <li><a ng-click="logout()">Logout</a></li>
+          </ul>
           
-              </ul>
-       </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-                    
-         </div>
-        </div><!--Header End-->
-              </header>
+        </nav>
+      </div>
+    </header>

@@ -1,0 +1,12 @@
+$layout-width : 70%;
+$line-spacing : 30;
+
+$pad : 20px;
+
+%clearfix {
+	&:after, &:before{
+	content : ' ';
+	display : table;
+	clear : both;
+	}
+}

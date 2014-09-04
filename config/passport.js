@@ -2,12 +2,13 @@ var LocalStrategy   = require('passport-local').Strategy;
 var mailer = require('nodemailer');
 var dir = require('mkdirp');
 var fs = require('fs');
+var mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
 
 // load up the user model
-var User = require('../app/models/users');
-var userOptions = require('../app/models/useroptions');
+var models = require('../app/models/');
 
-//Construct mail transporter
+//Construct mail transporter 
 var transporter = mailer.createTransport({ 
     service: 'gmail',
     auth: {
@@ -25,8 +26,9 @@ module.exports = function(passport) {
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+        models.User.findById({'_id': ObjectId(id)}, function(err, user) {
             done(err, user);
+
         });
     });
 
@@ -41,7 +43,7 @@ module.exports = function(passport) {
     function(req, email, password, done) {
         process.nextTick(function() {
 
-        User.findOne({ 'local.email' : { $regex : new RegExp(email, "i") }  }, function(err, user) {
+        models.User.findOne({ 'local.email' : { $regex : new RegExp(["^",email,"$"].join(""),"i") }  }, function(err, user) {
             if (err)
                 return done(err);
 
@@ -52,8 +54,8 @@ module.exports = function(passport) {
 
 				// if there is no user with that email
                 // create the user
-                var newUser            = new User();
-                var options = new userOptions();
+                var newUser            = new models.User();
+                var options = new models.useroptions(); 
 
                 // set the user's local credentials
                 newUser.local.email    = email;
@@ -61,6 +63,7 @@ module.exports = function(passport) {
                 newUser.local.username = req.body.username;
                 newUser.local.fname = req.body.fname;
                 newUser.local.lname = req.body.lname;
+                //Edit this line to include ip generation technique
                 newUser.local.ip = '0.0.0.0';
                 newUser.local.lastlogin = Date.now();
                 newUser.local.notescheck = Date.now();
@@ -84,9 +87,11 @@ module.exports = function(passport) {
                 var userid = newUser._id;
                 var htmlTemplate = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Unilynq | Activation</title></head><body style="margin:0px; font-family:Arial, Helvetica, sans-serif;"><div style="padding:10px; background:#333; font-size:24px; color:#CCC;"><a href="http://www.unilynq.hostoi.com"><img src="http://www.unilynq.com/img/UnilynqLogo.png" width="36" height="30" alt="Unilynq" style="border:none; float:left;"></a>UnilynQ Account Activation</div><div style="padding:24px; font-size:17px;">Hello '+ usernameToInclude +', <br /><br />Click the link below to activate your account: <br /><br /><a href="http://localhost:8080/activate?uid='+userid+'&u='+usernameToInclude+'&e='+email+'">Click here to activate your account now</a><br /><br />Login after successful activation using your:<br />* E-mail Address: <b>'+email+'</b></div></body></html>'
          		var userDirectory = './public/users/'+req.body.username;
-         		/*fs.writeFile('authenticate.html',htmlTemplate, function(error){
+         		
+                //Remember to delete this file before deployment
+                fs.writeFile('authenticate.html',htmlTemplate, function(error){
          			if(err)console.log(err);
-         		});*/
+         		});
                
 
 
@@ -127,11 +132,11 @@ module.exports = function(passport) {
 	},
 	function(req, username, password, done){		
 		process.nextTick(function(){
-		User.findOne({'local.email': { $regex : new RegExp(["^",req.body.username,"$"].join(""),"i") }}, function(err, user){
+		models.User.findOne({'local.email': { $regex : new RegExp(["^",req.body.username,"$"].join(""),"i") }}, function(err, user){
 			if(err)return done(err);
 			if(!user){
 				
-				User.findOne({'local.username' : {$regex : new RegExp(["^",username,"$"].join(""),"i")}}, function(err, user){
+				models.User.findOne({'local.username' : {$regex : new RegExp(["^",username,"$"].join(""),"i")}}, function(err, user){
 					if(err) return done(err);
 					if(!user) return done(null, false, {message : 'login failed'});
 					if(user){

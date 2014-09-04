@@ -1,0 +1,158 @@
+@mixin buttonPadding($size : $button-size-default){
+	$sizeEm : px2Em($size);
+	$topBottom : $sizeEm / 1.5;
+	$leftRight : $sizeEm * 1.2;
+
+	padding : $topBottom $leftRight;
+}
+
+@mixin buttonBorderBottom($size : $button-size-default){
+	border-bottom-width: px2Em($size) * 0.3;
+}
+
+@mixin buttonSize($size: $button-size-default){
+	font-size: px2Em($size);
+	line-height: px2Em($size);
+	@include buttonPadding($size);
+	@include buttonBorderBottom($size);
+}
+
+@mixin button($color : $base-color-main){
+	border-color: darken( $color , 13);
+	background-color: $color;
+	$color-a: $color-white;
+
+	@if lightness($color) > 75%{
+	$color-a : $color-black;
+	}
+
+	color: $color-a;
+
+	text-shadow : 0 0 2px darken($color,25);
+
+	&:hover,&:focus{
+	background-color: darken($color,8);
+	color: $color-a;
+	}
+
+	@include transition(background-color);
+
+	@extend %buttonBase;
+	@extend %buttonStyle;
+}
+
+%buttonBase{
+	@extend %zeroPaddingMargin;
+	@extend %sizing-box-border-box;
+
+	display: inline-block;
+	border-top-width: $button-border-top-width;
+	border-right-width: $button-border-right-width;
+	border-left-width: $button-border-left-width;
+	border-style: solid;
+	text-decoration:none;
+	cursor: $button-cursor;
+	font-family : $button-font-family;
+	font-weight: $button-font-weight;
+	margin-bottom: 1em;
+
+	@include buttonSize($button-size-medium);
+
+	&.small{
+	@include buttonSize($button-size-small);
+	}
+
+	&.large{
+	@include buttonSize($button-size-large);
+	}
+}
+
+
+
+%buttonStyle{
+	&.shadow{
+	@include insetShadow();
+	}
+	&.rounded{
+	@extend %buttonRounded;
+	}
+	&.roundedSmall{
+	@extend %buttonRoundedSmall;
+	}
+	&.roundedLeft{
+	@extend %buttonRoundedLeft;
+	}
+	&.roundedRight{
+	@extend %buttonRoundedRight;
+	}
+	&.roundedLeftBottom{
+	  @extend %buttonRoundedLeftBottom;
+	}
+	&.roundedRightBottom{
+	@extend %buttonRoundedRightBottom;
+	}
+	&.roundedLeftTop{
+	 @extend %buttonRoundedLeftTop;
+	}
+	&.roundedRightTop{
+	@extend %buttonRoundedRightTop;
+	}
+	&.disabled{
+	@extend %buttonDisabled;
+	}
+}
+
+
+%buttonRounded{
+ @if $button-border-radius{
+ 	@include roundedCorners($button-border-radius);
+ }	
+}
+
+%buttonRoundedSmall{
+	@if $button-border-radius-small{
+ 	@include roundedCorners($button-border-radius-small);
+ }	
+}
+
+
+%buttonRoundedLeft{
+	@if $button-border-radius{
+	@include roundedCorners(false, $button-border-radius,false,false,$button-border-radius);
+	}
+}
+
+%buttonRoundedRight{
+	@if $button-border-radius{
+	@include roundedCorners(false, false,$button-border-radius,$button-border-radius,false);
+	}
+}
+
+%buttonRoundedLeftBottom{
+	@if $button-border-radius-one-corner{
+	@include roundedCorners(false, false,false,false,$button-border-radius-one-corner);
+	}
+}
+
+%buttonRoundedRightBottom{
+	@if $button-border-radius-one-corner{
+	@include roundedCorners(false, false,false,$button-border-radius-one-corner);
+	}
+}
+
+%buttonRoundedLeftTop{
+	@if $button-border-radius-one-corner{
+	@include roundedCorners(false,$button-border-radius-one-corner);
+	}
+}
+
+%buttonRoundedRightTop{
+	@if $button-border-radius-one-corner{
+	@include roundedCorners(false,false,$button-border-radius-one-corner);
+	}
+}
+
+%buttonDisabled{
+	@include opacity(0.5);
+	cursor: default;
+}

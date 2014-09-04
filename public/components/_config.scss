@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,600|Open+Sans:400,600);
+
+$base-em-from-px : 16;
+
+$support-old-browsers : true;
+
+$layout-width : 1000;
+
+$global-border-radius: 500px;
+$global-border-radius-small : 4px;
+$global-border-radius-one-corner : 10px;
+$global-box-sizing: border-box;
+$global-opacity : 1;
+
+
+$color-white : #fff;
+$color-black : #000;
+
+$base-color-main : #334d5c;
+$base-color-green : #45b29d;
+$base-color-yellow : #efc94c;
+$base-color-orange : #e27a3f;
+$base-color-red : #df4949;
+
+$base-font-sans : 'Open Sans', sans-serif;
+$base-font-alternative : 'Roboto Slab', serif;
+
+
+$button-size-small : 12;
+$button-size-medium : 14;
+$button-size-large : 17;
+
+$button-size-default : $button-size-medium;
+
+$button-border-top-width : 1px;
+$button-border-right-width : 1px;
+$button-border-left-width : 1px;
+$button-border-bottom-width : 1px;
+
+$button-border-radius : $global-border-radius;
+$button-border-radius-small : $global-border-radius-small ;
+$button-border-radius-one-corner : $global-border-radius-one-corner;
+$button-cursor : pointer;
+$button-font-family : $base-font-sans;
+$button-font-weight : normal;
+
+$button-shadow-size : 0 1px 0 0 ;
+$button-shadow-color : transparentize($color-white, 0.5);
+$button-shadow-color-active : transparentize($color-white, 0.5);

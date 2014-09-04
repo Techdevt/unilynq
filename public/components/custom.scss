@@ -1,0 +1,9 @@
+@import "lib/custom";
+
+img,
+embed,
+object,
+video{
+	max-width : $responsive-objects-max-width;
+	height : auto;
+}

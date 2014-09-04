@@ -7,7 +7,9 @@ var session = require('express-session');
 var passport = require('passport');
 var passportLocal = require('passport-local');
 var MethodOverride = require('method-override');
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'); 
+var http = require('http');
+var multer = require('multer');
 
 
 var port = process.env.port || 8080;
@@ -25,7 +27,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
-
+app.use(multer({dest:'./uploads/',
+	/*rename : function(fieldname, filename){
+		return filename+Date.now();
+	}*/
+}));
 
 app.set('view engine', 'ejs');
 
@@ -43,11 +49,22 @@ app.use(flash());
 //routes
 require('./app/routes.js')(app,passport);
 
+var server = http.createServer(app).listen(port, function(err){
+	if(err) 
+		throw err;
+	console.log('Application Listening on Localhost:'+ port);
+});
 
-app.listen(port);
-console.log('Application Listening on Localhost:'+ port);
+var io = require('socket.io').listen(server);
+
+io.on('connection', function(socket){
+	socket.on('msg', function(data){
+		console.log(data);
+	});
+});
 
 
 
 
 
+ 

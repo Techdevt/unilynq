@@ -1,0 +1,284 @@
+@import "lib/layout";
+@mixin line-height($heightValue: 12 ){
+	line-height: $heightValue + px; //fallback for old browsers
+	line-height: (0.125 * $heightValue) + rem;
+}
+
+*{
+	@include boxSizing(border-box);
+}
+
+.grid {
+	margin : px2Em(20) auto;
+	padding : $pad;
+	width : $layout-width;
+	max-width : 100%;
+	@extend %clearfix;
+
+	header &{
+	background : $color-white;
+	margin-top : 0;
+	padding : px2Em(10) 0 0 0;
+	}
+
+}
+
+[class*="col-"]{
+	float : left;
+	padding-right : $pad;
+
+	.grid &:last-of-type{
+		padding-right : 0;
+	}
+
+}
+
+.col-2-3{
+	width : percentage(2/3);
+}
+
+.col-1-3{
+	width : percentage(1/3);
+}
+
+.col-1-2{
+	width : percentage(1/2);
+}
+
+.col-1-4{
+	width : percentage(1/4);
+}
+
+.col-1-6{
+	width : percentage(1/6);
+}
+
+.col-1-8{
+	width : percentage(1/8);
+}
+
+
+.grid-pad{
+	padding : $pad 0 $pad $pad;
+	[class*="col-"]:last-of-type{
+		padding-right : $pad;
+	}
+}
+
+.module{
+	padding : $pad;
+	background : $color-white;
+	width : 100%;
+	//@include box-shadow(1px 0 3px transparentize($color-black, 0.9));
+	margin-bottom : $pad;
+	font-size : px2Em($base-em-from-px);
+	@extend %clearfix;
+}
+
+header{
+	height : px2Em(70);
+	@include box-shadow(1px 0 3px transparentize($color-black, 0.01));
+	width : 100%;
+	@extend %clearfix;
+
+	nav{
+	float : right;
+	margin-top : px2Em(20);
+
+		ul{
+		list-style : none;
+
+		li{
+		float : left;
+		padding-right : 20px;
+		a{
+		color : lighten($base-color-main,5%);
+		text-transform : uppercase;
+		cursor : pointer;
+		font-size : px2Em(14);
+		font-weight : bold;
+		&:hover{
+		color : darken($base-color-orange,15%);
+		}	
+		}
+
+		}
+
+		}
+
+	}
+
+	.logo{
+	float : left;
+		& a{
+			cursor : pointer;
+		}
+	}
+}
+
+.postform{
+	width : 80%;
+	 
+	 textarea {
+	 	resizable : none;
+	 	background : $color-white;
+	 	height : px2Em(160);
+		}
+
+	.posterImg{
+		width : px2Em(150);
+		height : px2Em(200);
+		float : left;
+		position : relative;
+		top : px2Em(-5);
+	}
+
+	button{
+	margin-left : px2Em(20);
+	}
+	//.timestamp {
+	//	color : #222;
+	//	top : px2Em(20);
+	//	right : px2Em(10);
+	//	font-size : px2Em(12);
+	//}
+
+
+}
+
+
+
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+    float : left;
+}
+
+.fileContainer [type=file] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+
+.searchfriends{
+    background: none repeat scroll 0% 0% transparent;
+    border-width: 0px 0px 2px;
+    border-style: none none solid;
+    border-color: -moz-use-text-color -moz-use-text-color #737373;
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -webkit-border-top-colors: none;
+    -webkit-border-right-colors: none;
+    -webkit-border-bottom-colors: none;
+    -webkit-border-left-colors: none;
+    border-image: none;
+    box-shadow: none;
+    border-radius: 0px;
+    vertical-align: bottom;
+    width: 333px;
+    position: relative;
+    top: -2px;
+    padding: 3px 6px;
+    color: #E18728;
+
+    &:focus{
+    border-bottom-color: #E18728;
+    }
+ }
+
+
+#searchBox{
+    width: 363px;
+    position:absolute;
+    top:0px;
+    right:10px;
+  }
+
+
+ @media screen and (min-width:760px){
+   .navbar-default .navbar-nav{margin-left: 100px;}
+   .navbar-default .navbar-nav>li>a{margin:0 10px;}
+    .nav-tabs{ margin-left: 10%;}
+    #account{margin-left:20px;}
+}
+
+@media screen and (min-width:992px){
+   .nav-tabs{ margin-left: 29%;}
+    .btn { padding: 10px 2px}
+    .LeftText{margin-top: -20px; margin-right: 0}
+    }
+
+@media screen and (min-width:1200px){
+   .btn { padding: 10px 13px}
+   .nav-tabs{ margin-left:29%;}
+   .nav-tabs>li>a {padding: 10px 20px}
+   .LeftText{margin-top: -10px; margin-right: 0}
+}
+
+
+.nav-tabs > li:nth-child(1) > a:nth-child(1) {
+    background-color:#428BCA;
+    color:#FFF;
+    
+}
+
+/******NAV TABS CUSTOMIZATION******/
+.nav-tabs > li:nth-child(2) > a:nth-child(1){
+    background-color: rgb(223,73,73);
+    color: #FFF;
+}
+.nav-tabs > li:nth-child(3) > a:nth-child(1){
+    background-color: rgb(226,122,63);
+    color: #FFF;
+}
+.nav-tabs > li:nth-child(4) > a:nth-child(1){
+    background-color: rgb(239,201,76);
+    color: #FFF;
+}
+.nav-tabs > li:nth-child(5) > a:nth-child(1){
+    background-color: rgb(69,178,157);
+    color: #FFF;
+}
+
+
+
+.activeTab{
+    border: none;
+}
+
+.nav-tabs{
+border-bottom:none;
+}
+
+.nav-tabs>li>a:hover{
+    background: #428BCA;
+    color: #FFF;
+}
+
+
+
+.nav-tabs>li>a {
+  
+  padding: 10px 10px;
+  font-weight: bold;
+  
+}
+
+footer{
+	text-align:center;
+}
+
+.center{
+	margin : 0 auto;
+	text-align : center;
+}

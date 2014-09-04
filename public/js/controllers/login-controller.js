@@ -13,7 +13,8 @@ app.controller('loginController',['$http','$scope','$log','$window','authenticat
 				else if( result === 'wrong password..retry') { return $scope.loginMsg = 'password incorrect'}
 				else{
 				userData = authenticationService.getUserData();
-				$window.location.href = '/profile';
+				//console.log(userData);
+				$window.location.href = '/profile?u='+userData.userName;
 				}
 			});
 			$scope.loginData = {};

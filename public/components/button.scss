@@ -1,0 +1,50 @@
+@import "lib/button";
+
+.buttonMain{
+	@include button($color:$base-color-main);
+}
+
+.buttonYellow{
+	@include button($color:$base-color-yellow);
+
+}
+
+.buttonGreenMedium{
+	@include button($color:$base-color-green);
+
+}
+
+.buttonGreen{
+	@include button($color:$base-color-green);
+
+}
+
+.buttonOrange{
+	@include button($color:$base-color-orange);
+
+}
+
+ .buttonRed{
+	@include button($color:$base-color-red);
+
+}
+
+.buttonGreenLight{
+	@include button($color: lighten($base-color-green , 15%));
+
+}
+
+.buttonOrangeDark{
+	@include button($color: darken($base-color-orange , 10%));
+
+}
+
+.buttonMainLight{
+	@include button($color: lighten($base-color-main, 25%));
+
+}
+
+.buttonRedLight{
+	@include button($color: lighten($base-color-red , 5%));
+
+}

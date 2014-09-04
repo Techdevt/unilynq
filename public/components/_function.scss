@@ -1,0 +1,3 @@
+@function px2Em($px){
+	@return ($px / $base-em-from-px) * 1em;
+} 

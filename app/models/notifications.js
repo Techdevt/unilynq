@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var notificationsSchema = mongoose.Schema({
+var notificationSchema = mongoose.Schema({
 	username : String,
 	initiator : String,
 	app : String,
@@ -10,4 +10,4 @@ var notificationsSchema = mongoose.Schema({
 });
 
 
-module.exports = mongoose.model('notifications', notificationsSchema);
+module.exports = mongoose.model('notifications', notificationSchema);

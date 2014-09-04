@@ -1,8 +1,44 @@
-<button onclick="togglePost('statusui',this)" class="postShowBtn">Expand Postbox</button><br>
-<div id="statusui" style="height:0px;overflow:hidden;">
-
+<div class="module">
+	<form class="postform" ng-submit="post()" enctype="multipart/form-data">
+		<div class="posterImg">
+			<img ng-src="/img/default.jpg" alt="postpic">
+		</div>
+		<textarea placeholder="what's on your mind" class="form-control" ng-model="postMsg.msg"></textarea>
+		<label class="fileContainer buttonMain">
+		<i class="fa fa-paperclip"></i>Attach
+		<input 
+		type="file"
+		ng-file-select="onFileSelect($files)"
+		multiple accept="image/*">
+		</label>
+		{{uploadProgress}}
+		<button type="submit" class=" buttonMain">Post</button>
+	</form>
 </div>
 
-<div id="statusarea">
-<h3>Status Area</h3>
-</div>
+	<article class="module" ng-repeat="status in statuses">
+	<span ng-click="deletePost(this.status._id)">Delete Post</span>
+		<ul>
+			<li>id: {{status._id}}</li>
+			<li>attachment: {{status.attachment}}</li>
+			<li>post: {{status.msg}}</li>
+			<li>author: {{status.author}}</li>
+			<li>postedTo: {{status.account_name}}</li>
+			<li><i class="fa fa-clock-o"></i>Date posted: <span date="{{status.postdate}}"/></li>
+		</ul>
+		<hr><h4>Comments</h4>
+		<ul ng-repeat="comment in status.comments">
+		<span ng-click="deleteComment(this.status._id,this.comment._id,$index)">Delete Comment</span>
+			<li>author: {{comment.author}}</li>
+			<li>comment: {{comment.body}}</li>
+			<li><i class="fa fa-clock-o"></i>date added: <span timeago="{{comment.date}}"/></li>
+			<li>comment_id: {{comment._id}}</li>
+			<br><br>
+		</ul>
+		<form ng-submit="comment(this.status._id,commentMsg)">
+			<textarea ng-model="commentMsg"></textarea>
+			<button type="submit">comment</button>
+		</form>
+	</article>
+	<!--<iframe width="560" height="315" src="//www.youtube.com/embed/KMYrIi_Mt8A" allowfullscreen></iframe>-->
+	<button ng-click="fetchPage()">Load Next Page</button>

@@ -1,24 +1,24 @@
-                    <article class="ProfileInfoBox">
-                        <div class="profileInfo">
-                        <div class="innerdiv1">
-                    <div id="profile_pic_box" class="dp"><?php echo $profile_pic_btn; ?><?php echo $avatar_form; ?><?php echo $profile_pic; ?></div>
+                <aside>
+                     <div class="module">
+                            
+                    <div id="profile_pic_box" class="dp"><img ng-src="{{user.dp}}" alt="{{user.name}}"></div>
                     <!--<div id="profile_pic_box"><img src="<?php echo $dpString; ?>" class="dp"/></div>-->
-                    <h4><?php echo $fname." ".$lname; ?></h4>
+                    <h4>{{user.name}}</h4>
                     <span id="friendBtn"><?php echo $friend_button; ?></span>
                      <span id="blockBtn"><?php echo $block_button; ?></span>
-
-                        </div>
                         <br /><br/>
                          
-                        
-                         <div class="innerdiv2">
                              <div class="col-md-12 text-center"><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p> </div>
                                 <br /><span><?php echo $msgBtn; ?></span>
                                 
                         </div>
-                        </div>
-                  
-                </article>
+
+                    <div class="module">
+                        <div ui-view="profile_right"></div>
+                    </div>
+                </aside>
+
+                 
                    
 
                   

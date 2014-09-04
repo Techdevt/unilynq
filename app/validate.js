@@ -1,5 +1,5 @@
 'use strict';
-var User = require('./models/users');
+var models = require('./models/');
 
 
 
@@ -7,7 +7,7 @@ module.exports = function(type,element,res){
 	passReqToCallBack : true;
 	if(type == 'username'){
 
-		User.findOne({ "local.username" : { $regex : new RegExp(element, "i") } },function(err, user) {
+		models.User.findOne({ "local.username" : { $regex : new RegExp(["^",element,"$"].join(""),"i") } },function(err, user) {
             if(err)
             	throw err;
             //console.log(user);
@@ -23,7 +23,7 @@ module.exports = function(type,element,res){
 	};
 
 	if(type =='email'){
-		User.findOne({ "local.email" : { $regex : new RegExp(element, "i") } },function(err, user) {
+		models.User.findOne({ "local.email" : { $regex : new RegExp(["^",element,"$"].join(""),"i") } },function(err, user) {
             if(err)
             	throw err;
             //console.log(user);

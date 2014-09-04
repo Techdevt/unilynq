@@ -44,7 +44,7 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
 
         // PROFILE PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('profile', {
- 		    url: '/profile',
+ 		    url: '/profile?u',
            views : {
            	'' : {
            		 templateUrl : '../views/profile.html',
@@ -67,16 +67,39 @@ app.config(function($stateProvider,$urlRouterProvider,$locationProvider){
            }
            },
            resolve : {
-           	getData : ['$q','$http','authenticationService', function($q,$http,authenticationService){           		
-           			var deferred = $q.defer();
-           			$http.post('/api/userdata').success(function(data){
-           				console.log(data);
-           				deferred.resolve(data);
-           			}).error(function(error){
-           				deferred.reject(error);
-           			});	
-           			return deferred.promise;
-           	}]
+           	getData : ['$q','$stateParams','$http','authenticationService', function($q,$stateParams,$http,authenticationService){           		
+           			var user = {username : $stateParams.u };
+                var deferred = $q.defer();
+
+           	    $http({
+                  method : 'post',
+                  url : '/api/userdata',
+                  data : user,
+                  headers : {'Content-type' : 'application/json'}
+                })
+                .then(function(data){
+
+                  deferred.resolve(data)
+                }, function(error){
+                  if(error)
+                    console.log(error);
+                });
+                return deferred.promise;
+           	}],
+
+            statusFetch : ['statusService','$q','$stateParams', function(statusService,$q,$stateParams){
+              var deferred = $q.defer();
+              var user = $stateParams.u;
+              statusService.fetch(user).then(function(data){
+                deferred.resolve(data);
+              })
+              return deferred.promise;
+           }]
+           },
+           delay: function($q, $defer) {
+            var delay = $q.defer();
+            $defer(delay.resolve, 1000);
+            return delay.promise;
            }
         });
 
