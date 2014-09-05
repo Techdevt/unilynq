@@ -25,7 +25,7 @@
     "mkdirp": "^0.5.0",
     "mongoose": "^3.8.14",
     "mongoose-auto-increment": "^3.0.8",
-    "mongoose-pages": "0.0.3",
+    "mongoose-query-paginate": "*",
     "morgan": "^1.2.2",
     "multer": "^0.1.4",
     "nodemailer": "^1.2.0",
