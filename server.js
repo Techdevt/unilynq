@@ -12,7 +12,7 @@ var http = require('http');
 var multer = require('multer');
 
 
-var port = process.env.port || 8080;
+var port = process.env.PORT || 8080;
 var app = express();
 
 var db = require('./config/database.js');
